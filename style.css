@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Righteous");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,26 +8,37 @@ body {
   min-height: 100vh;
   width: 100%;
   font-family: 'Open Sans', sans-serif;
-  color: #252525;
-  background-color: #ededed;
+  color: #3e2d71;
+  background-color: #fff;
 }
 .anchor-link-reset,
 .container nav#navbar a,
+.container section#projects div.projects-tiles div.project-tile div.project-tile__text a,
 .container footer a {
   color: inherit;
   text-decoration: none;
 }
 .container nav#navbar {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
   padding: 1rem;
   position: fixed;
   width: 100%;
-  background: #ededed;
-  filter: drop-shadow(0 1px 5px rgba(37,37,37,0.3));
+  z-index: 5;
+  background: #fff;
+  filter: drop-shadow(0 1px 5px rgba(77,56,141,0.3));
+}
+.container nav#navbar svg {
+  fill: #4d388d;
+  width: 50px;
+  height: 28px;
+}
+.container nav#navbar span {
+  flex-grow: 1;
 }
 .container nav#navbar a {
-  margin: 0 0.9rem;
+  margin: 0 0.8rem;
+  font-size: 1.05rem;
   position: relative;
 }
 .container nav#navbar a:before {
@@ -37,14 +48,14 @@ body {
   left: 50%;
   height: 2px;
   width: 0;
-  background: #252525;
+  background: #4d388d;
   transition: all 0.3s ease-out;
 }
 .container nav#navbar a:hover:before {
   left: 0;
   width: 100%;
 }
-.container section#welcome {
+.container section#welcome-section {
   min-height: 100vh;
   width: 100%;
   padding: 0 1rem;
@@ -53,29 +64,88 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  line-height: 1.8;
+}
+.container section#welcome-section h1 {
+  font-family: 'Righteous', cursive;
+  font-size: 5rem;
+  filter: drop-shadow(7.5px 7.5px 0 #a08fd3);
+}
+.container section#welcome-section h2 {
+  font-size: 2rem;
 }
 .container section#projects {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr repeat(auto-fill, minmax(200px, 1fr));
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .container section#projects h2 {
   padding: 0 1rem;
   text-align: center;
+  font-size: 2.5rem;
+}
+.container section#projects div.projects-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  justify-content: center;
+  grid-gap: 25px;
+}
+.container section#projects div.projects-tiles div.project-tile {
+  height: 400px;
+  background: #fff;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  display: flex;
+  flex-direction: column;
+}
+.container section#projects div.projects-tiles div.project-tile div.project-tile__image {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  transform: rotate(12deg);
+  opacity: 0.4;
+  padding: 0 4rem;
+  transition: all 0.3s ease-out;
+}
+.container section#projects div.projects-tiles div.project-tile:hover .project-tile__image {
+  transform: rotate(0);
+  opacity: 0.65;
+  padding: 0 2rem;
+}
+.container section#projects div.projects-tiles div.project-tile div.project-tile__text {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.container section#projects div.projects-tiles div.project-tile div.project-tile__text h4 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+.container section#projects div.projects-tiles div.project-tile div.project-tile__text a {
+  align-self: flex-end;
+  position: relative;
+}
+.container section#projects div.projects-tiles div.project-tile div.project-tile__text a:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  left: 0;
+  width: 100%;
+  background: #4d388d;
 }
 .container footer {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem 1.2rem;
-  background: #252525;
-  color: #ededed;
+  background: #4d388d;
+  color: #fff;
 }
 .container footer span {
   width: 15px;
   height: 15px;
-  background: #ededed;
+  background: #fff;
   margin: 0 0.6rem;
   position: relative;
   transform: rotate(45deg);
@@ -87,15 +157,15 @@ body {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #ededed;
+  background: #fff;
 }
 .container footer span:before {
-  bottom: 60%;
+  bottom: 50%;
   right: 0;
 }
 .container footer span:after {
   bottom: 0;
-  right: 60%;
+  right: 50%;
 }
 .container footer a {
   margin: 0 0.4rem;
@@ -108,14 +178,21 @@ body {
   left: 50%;
   height: 2px;
   width: 0;
-  background: #ededed;
+  background: #fff;
   transition: all 0.3s ease-out;
 }
 .container footer a:hover:before {
   left: 0;
   width: 100%;
 }
-/*
-notes:
-- [ ] there should be a media query
-*/
+@media (max-width: 1000px) {
+  .container section#projects div.projects-tiles {
+    margin: 1rem 0;
+  }
+}
+@media (max-width: 500px) {
+  .container section#projects div.projects-tiles div.project-tile div.project-tile__image {
+    transform: rotate(0);
+    padding: 0 3rem;
+  }
+}

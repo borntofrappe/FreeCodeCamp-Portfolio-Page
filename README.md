@@ -1,7 +1,7 @@
 # FreeCodeCamp-Portfolio-Page
 Create a portfolio page for the new curriculum @freeCodeCamp.
 
-<!-- Link to the work-in-progress pen right [here](). -->
+Link to the working pen right [here](https://codepen.io/borntofrappe/full/NzpJaO/).
 
 # Preface 
 
@@ -29,4 +29,4 @@ The page should have:
 - [x] a project section with `id="projects"`, nesting at least one element with `class="project-title"`, at least one link to a project;
 - [x] a navbar with `id="navbar"`, nesting at least one link forwarding toward a different section of the page. The navbar should always be at the top of the viewport;
 - [x] a link with `id="profile-link"` opening a github or freeCodeCamp account, in a new tab;
-- [ ] at least a media query.
+- [x] at least a media query.
