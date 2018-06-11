@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #252525;
+  background-color: #ededed;
+}
+.anchor-link-reset,
+.container nav#navbar a,
+.container footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.container nav#navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  background: #ededed;
+  filter: drop-shadow(0 1px 5px rgba(37,37,37,0.3));
+}
+.container nav#navbar a {
+  margin: 0 0.9rem;
+  position: relative;
+}
+.container nav#navbar a:before {
+  position: absolute;
+  content: '';
+  bottom: -2px;
+  left: 50%;
+  height: 2px;
+  width: 0;
+  background: #252525;
+  transition: all 0.3s ease-out;
+}
+.container nav#navbar a:hover:before {
+  left: 0;
+  width: 100%;
+}
+.container section#welcome {
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container section#projects {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr repeat(auto-fill, minmax(200px, 1fr));
+  justify-items: center;
+}
+.container section#projects h2 {
+  padding: 0 1rem;
+  text-align: center;
+}
+.container footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background: #252525;
+  color: #ededed;
+}
+.container footer span {
+  width: 15px;
+  height: 15px;
+  background: #ededed;
+  margin: 0 0.6rem;
+  position: relative;
+  transform: rotate(45deg);
+}
+.container footer span:before,
+.container footer span:after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ededed;
+}
+.container footer span:before {
+  bottom: 60%;
+  right: 0;
+}
+.container footer span:after {
+  bottom: 0;
+  right: 60%;
+}
+.container footer a {
+  margin: 0 0.4rem;
+  position: relative;
+}
+.container footer a:before {
+  position: absolute;
+  content: '';
+  bottom: -2px;
+  left: 50%;
+  height: 2px;
+  width: 0;
+  background: #ededed;
+  transition: all 0.3s ease-out;
+}
+.container footer a:hover:before {
+  left: 0;
+  width: 100%;
+}
+/*
+notes:
+- [ ] there should be a media query
+*/
