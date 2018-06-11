@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Righteous')
 
+// include the variables used in the project
 font-main = 'Open Sans', sans-serif
-black = #252525
-white = #ededed
+font-header = 'Righteous', cursive
+white = #ffffff
+purple = #4d388d
 
 *
     box-sizing border-box
@@ -13,9 +15,10 @@ body
     min-height 100vh
     width 100%
     font-family font-main
-    color black
+    color darken(purple, 20%)
     background-color white
 
+// define a rest for anchor link elements
 .anchor-link-reset
     color inherit 
     text-decoration none
@@ -25,41 +28,56 @@ body
     // properties for the wrapping container 
 
     nav#navbar 
-        // display the navigation bar as a single row, with the contents at the very end of the page
+        // display the navigation bar as a single row, with the anchor links at the very end of the page
         display flex 
-        justify-content flex-end
+        // align items to align the anchor link with the svg icon
+        align-items center 
         // padding to distance the contents from the surrounding window
         padding 1rem
         // position fixed to have the navbar always in the viewport
         position fixed 
         // width 100% to let the fixed element span the entire viewport
         width 100%
+        // zindex and background to superimpose the navigation bar on the rest of the page
+        z-index 5
         background white 
-        filter drop-shadow(0 1px 5px rgba(black, 0.3))
+        filter drop-shadow(0 1px 5px rgba(purple, 0.3))
+
+        svg 
+            fill purple 
+            // keep the ratio defined by the svg (100px by 56px)
+            width 50px 
+            height 28px
+
+        span 
+            // flex grow to push the logo to the left and the anchor links to the right 
+            flex-grow 1
 
         a 
             // reset the style of the anchor link elements
             @extend .anchor-link-reset
-            margin 0 0.9rem
+            // margin to distance the anchor link elements from one another
+            margin 0 0.8rem
+            font-size 1.05rem
             // position relative to include a text underline which expands from the center with a pseudo element
             position relative 
 
             &:before
-                // include a text underline which expands from the center, on hover  (hover on the anchor link affects the pseudo element of the same)
+                // include a text underline which expands from the center, on hover (hover on the anchor link affects the pseudo element of the same)
                 position absolute 
                 content ''
                 bottom -2px
                 left 50%
                 height 2px
                 width 0
-                background black 
+                background purple 
                 transition all 0.3s ease-out
 
             &:hover:before
                 left 0 
                 width 100%
 
-    section#welcome 
+    section#welcome-section
         // stretch the section to occupy the entire height and width of the viewport
         min-height 100vh 
         width 100%
@@ -71,17 +89,98 @@ body
         flex-direction column 
         align-items center 
         justify-content center
+        line-height 1.8
+
+        h1 
+            font-family font-header
+            font-size 5rem
+            filter drop-shadow(7.5px 7.5px 0 lighten(purple, 50%))
+
+        h2 
+            font-size 2rem 
+
 
     section#projects 
+        // stretch the projects section to be at least 100vh tall
         min-height 100vh
-        display grid 
-        grid-template-columns 1fr repeat(auto-fill, minmax(200px, 1fr))
-        justify-items center 
+        // display the header and the div wrapping the projects in a single column layout
+        display flex 
+        flex-direction column
+        // position the elements with equal spacing between them and between them and the surrounding borders
+        justify-content space-around
 
         h2
             // padding to distance the text from the surrounding window
             padding 0 1rem
             text-align center
+            font-size 2.5rem
+
+        div.projects-tiles
+            // display grid to display the cards with the projects in 250px columns
+            display grid
+            grid-template-columns repeat(auto-fit, 250px)
+            // justify content to center the grid in the page, if need be
+            justify-content center
+            // grid gap to distance the nesting cards
+            grid-gap 25px
+            
+
+            div.project-tile
+                // stretch the cards to be 400px tall
+                height 400px
+                // background to give a shadow with the filter property
+                background white 
+                filter drop-shadow(2px 2px 4px rgba(black, 0.3))
+                // display the contents of the card in a single column layout, positioning the two sections one on top of another
+                display flex 
+                flex-direction column
+
+                div.project-tile__image
+                    // stretch the div nesting the image to cover the spacing not covered by the text
+                    flex-grow 1
+                    // center the image in the div
+                    display flex 
+                    justify-content center
+                    transform rotate(12deg)
+                    opacity 0.40
+                    // padding reduces the width of the nested image
+                    padding 0 4rem
+                    // include a transition for the properties of transform, opacity, padding
+                    transition all 0.3s ease-out
+
+                &:hover .project-tile__image
+                    // on hover straighten the nested image, increase its opacity and size 
+                    transform rotate(0)
+                    opacity 0.65
+                    padding 0 2rem
+
+                div.project-tile__text
+                    // padding to distance the content from the surrounding border
+                    padding 1rem 1.5rem
+                    // display flex to display the header and anchor link in a single column layout
+                    display flex 
+                    flex-direction column
+
+                    h4
+                        font-size 2rem
+                        // margin to separate the header from the anchor link below
+                        margin 1rem 0
+
+                    a
+                        @extends .anchor-link-reset
+                        // align self to have the anchor link pushed at the very right end of the card
+                        align-self flex-end
+                        // position relative to include a text underline with a pseudo element
+                        position relative 
+
+                        &:before 
+                            content ''
+                            position absolute 
+                            bottom 0
+                            height 2px
+                            left 0
+                            width 100%
+                            background purple
 
 
     footer 
@@ -93,7 +192,7 @@ body
         // padding to distance the content from the surrounding border and allow for some space for the differently-colored background
         padding 1rem 1.2rem
         // invert the background and color values
-        background black 
+        background purple 
         color white 
 
         span 
@@ -116,11 +215,11 @@ body
                 background white 
             &:before
                 // the parent element is rotated 45 degrees and therefore, including a bottom value pushes the element to the top right of the screen
-                bottom 60%
+                bottom 50%
                 right 0
             &:after
                 bottom 0
-                right 60%
+                right 50%
 
         a 
             // extend the anchor link reset
@@ -144,3 +243,15 @@ body
             &:hover:before
                 left 0 
                 width 100%
+
+
+@media (max-width: 1000px)
+    // on larger screen sizes increase the vertical margin of the div which nests all the projects
+    .container section#projects div.projects-tiles
+        margin 1rem 0
+
+@media (max-width: 500px)
+    // with small screen devices remove the initial rotation and slightly increase the size of the image nested in the card
+    .container section#projects div.projects-tiles div.project-tile div.project-tile__image
+        transform rotate(0)
+        padding 0 3rem
